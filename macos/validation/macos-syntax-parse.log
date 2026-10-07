@@ -1,0 +1,3 @@
+Command: swiftc -frontend -parse -target arm64-apple-macosx13.0 macos/Sources/DragonCodexBoot/*.swift
+Exit: 0
+Scope: syntax only; no macOS SDK type checking, linking, or runtime validation.

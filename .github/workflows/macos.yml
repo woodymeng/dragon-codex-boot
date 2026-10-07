@@ -1,0 +1,36 @@
+name: macOS Apple Silicon build
+
+on:
+  push:
+    branches: [main, feat/macos-port]
+    paths: ['macos/**', '.github/workflows/macos.yml', 'media/**', 'LICENSE', 'THIRD_PARTY_NOTICES.md']
+  pull_request:
+    paths: ['macos/**', '.github/workflows/macos.yml', 'media/**', 'LICENSE', 'THIRD_PARTY_NOTICES.md']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-package:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Compile, run tests and AVFoundation playback, package arm64 app
+        run: bash macos/scripts/ci.sh
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: macOS-verification-logs
+          path: build/macos-ci-logs/
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v7
+        with:
+          name: DragonCodexBoot-macos-arm64
+          path: |
+            dist/*-macos-arm64*.zip
+            dist/*-macos-arm64*.sha256
+          if-no-files-found: error

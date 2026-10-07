@@ -8,6 +8,8 @@
 
 运行使用本机 Windows、.NET Framework、Windows 媒体组件和 DWM API。它们不包含在仓库或发布包里，应按各自许可使用。
 
+独立 macOS 实现使用本机 Swift 运行时、AppKit、AVFoundation、ScreenCaptureKit、Core Image 和公开 Accessibility API；构建使用 Apple macOS SDK。Apple 系统组件和 SDK 不包含在源码仓库里，按 Apple 的相关条款使用。
+
 ## 产品名称
 
 OpenAI、Codex、ChatGPT 和 Windows 名称用于说明所支持的客户端与平台。本项目是独立社区工具，不是官方客户端或官方插件。

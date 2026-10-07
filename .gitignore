@@ -1,6 +1,8 @@
 /build/
 /dist/
 /.local/
+/macos/.build/
+/macos/.swiftpm/
 **/logs/
 **/qa/
 **/.integration/

@@ -2,6 +2,8 @@
 
 给 Windows 版 Codex 桌面客户端播放自定义启动动画，并把动画结尾自然交接到真实、可操作的软件窗口。
 
+Apple Silicon Mac 的 Swift 原生启动器位于独立 [`macos/`](macos/README.md)，使用 AppKit、AVFoundation、ScreenCaptureKit 和公开 Accessibility API。构建、权限与验收状态见该目录文档及 [`LOCAL_HANDOFF.md`](LOCAL_HANDOFF.md)。下面保留 Windows 版本的使用说明。
+
 **社区独立项目，与 OpenAI 无隶属关系。** 源码使用 MIT 许可证。仓库与默认程序包包含一段完整的 1080p 龙娘启动动画，解压即可播放，也支持换成自己的 MP4。视频许可说明见 [随附媒体说明](media/MEDIA_NOTICE.md)。
 
 ## 它做什么

@@ -1,0 +1,75 @@
+[0/1] Planning build
+Building for debugging...
+[0/6] Write sources
+[1/6] Write swift-version-34569C9CE204F859.txt
+[3/5] Emitting module DragonCodexBoot
+[4/5] Compiling DragonCodexBoot LauncherController.swift
+Build complete! (0.99s)
+Test Suite 'All tests' started at 2026-10-07 16:17:24.960
+Test Suite 'debug.xctest' started at 2026-10-07 16:17:24.978
+Test Suite 'ConfigurationTests' started at 2026-10-07 16:17:24.978
+Test Case 'ConfigurationTests.testBundledConfigurationMatchesMediaTimeline' started at 2026-10-07 16:17:24.978
+Test Case 'ConfigurationTests.testBundledConfigurationMatchesMediaTimeline' passed (0.003 seconds)
+Test Case 'ConfigurationTests.testFramesMustBeOrderedAndWithinVideo' started at 2026-10-07 16:17:24.981
+Test Case 'ConfigurationTests.testFramesMustBeOrderedAndWithinVideo' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testFramesMustCoverTransition' started at 2026-10-07 16:17:24.982
+Test Case 'ConfigurationTests.testFramesMustCoverTransition' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testInvalidTimingRejected' started at 2026-10-07 16:17:24.982
+Test Case 'ConfigurationTests.testInvalidTimingRejected' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testInvalidWindowAndVolumeRejected' started at 2026-10-07 16:17:24.982
+Test Case 'ConfigurationTests.testInvalidWindowAndVolumeRejected' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testMalformedConfigurationAndMissingFieldsRejected' started at 2026-10-07 16:17:24.982
+Test Case 'ConfigurationTests.testMalformedConfigurationAndMissingFieldsRejected' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testMediaMustCoverTimelineAndContainVideo' started at 2026-10-07 16:17:24.983
+Test Case 'ConfigurationTests.testMediaMustCoverTimelineAndContainVideo' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testNonfiniteNumbersRejected' started at 2026-10-07 16:17:24.983
+Test Case 'ConfigurationTests.testNonfiniteNumbersRejected' passed (0.0 seconds)
+Test Case 'ConfigurationTests.testWrongApplicationPathRejected' started at 2026-10-07 16:17:24.983
+Test Case 'ConfigurationTests.testWrongApplicationPathRejected' passed (0.0 seconds)
+Test Suite 'ConfigurationTests' passed at 2026-10-07 16:17:24.983
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'GeometryTests' started at 2026-10-07 16:17:24.983
+Test Case 'GeometryTests.testAccessibilityCoordinatesAcrossMultipleDisplays' started at 2026-10-07 16:17:24.983
+Test Case 'GeometryTests.testAccessibilityCoordinatesAcrossMultipleDisplays' passed (0.0 seconds)
+Test Case 'GeometryTests.testEaseEndpointsAndMidpoint' started at 2026-10-07 16:17:24.983
+Test Case 'GeometryTests.testEaseEndpointsAndMidpoint' passed (0.002 seconds)
+Test Case 'GeometryTests.testEveryTransitionSampleRemainsInsideVideo' started at 2026-10-07 16:17:24.985
+Test Case 'GeometryTests.testEveryTransitionSampleRemainsInsideVideo' passed (0.101 seconds)
+Test Case 'GeometryTests.testKeyframesClampAndInterpolate' started at 2026-10-07 16:17:25.087
+Test Case 'GeometryTests.testKeyframesClampAndInterpolate' passed (0.001 seconds)
+Test Case 'GeometryTests.testLetterboxingAndSmallScreenFit' started at 2026-10-07 16:17:25.087
+Test Case 'GeometryTests.testLetterboxingAndSmallScreenFit' passed (0.0 seconds)
+Test Case 'GeometryTests.testTopLeftCoordinatesConvertToAppKit' started at 2026-10-07 16:17:25.088
+Test Case 'GeometryTests.testTopLeftCoordinatesConvertToAppKit' passed (0.0 seconds)
+Test Suite 'GeometryTests' passed at 2026-10-07 16:17:25.088
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.104 (0.104) seconds
+Test Suite 'PlaybackTests' started at 2026-10-07 16:17:25.088
+Test Case 'PlaybackTests.testCaptureLossDuringTransitionDoesNotReenterHold' started at 2026-10-07 16:17:25.088
+Test Case 'PlaybackTests.testCaptureLossDuringTransitionDoesNotReenterHold' passed (0.0 seconds)
+Test Case 'PlaybackTests.testCapturePreparationCanGateReadiness' started at 2026-10-07 16:17:25.088
+Test Case 'PlaybackTests.testCapturePreparationCanGateReadiness' passed (0.0 seconds)
+Test Case 'PlaybackTests.testColdLaunchHoldsAndResumesThenFinishesAtEOF' started at 2026-10-07 16:17:25.088
+Test Case 'PlaybackTests.testColdLaunchHoldsAndResumesThenFinishesAtEOF' passed (0.0 seconds)
+Test Case 'PlaybackTests.testDelayedTimerAtEOFStillHoldsIfClientMissing' started at 2026-10-07 16:17:25.089
+Test Case 'PlaybackTests.testDelayedTimerAtEOFStillHoldsIfClientMissing' passed (0.001 seconds)
+Test Case 'PlaybackTests.testHoldTimeoutUsesWallClock' started at 2026-10-07 16:17:25.089
+Test Case 'PlaybackTests.testHoldTimeoutUsesWallClock' passed (0.0 seconds)
+Test Case 'PlaybackTests.testLoadingTimeout' started at 2026-10-07 16:17:25.090
+Test Case 'PlaybackTests.testLoadingTimeout' passed (0.0 seconds)
+Test Case 'PlaybackTests.testMediaFailureAlwaysTerminates' started at 2026-10-07 16:17:25.090
+Test Case 'PlaybackTests.testMediaFailureAlwaysTerminates' passed (0.0 seconds)
+Test Case 'PlaybackTests.testSkipDuringLoadOrHoldIsImmediateAndIdempotent' started at 2026-10-07 16:17:25.090
+Test Case 'PlaybackTests.testSkipDuringLoadOrHoldIsImmediateAndIdempotent' passed (0.0 seconds)
+Test Case 'PlaybackTests.testTotalDeadlineAppliesEvenToLoadedButStalledPlayer' started at 2026-10-07 16:17:25.091
+Test Case 'PlaybackTests.testTotalDeadlineAppliesEvenToLoadedButStalledPlayer' passed (0.0 seconds)
+Test Case 'PlaybackTests.testWarmLaunchDoesNotPause' started at 2026-10-07 16:17:25.091
+Test Case 'PlaybackTests.testWarmLaunchDoesNotPause' passed (0.0 seconds)
+Test Suite 'PlaybackTests' passed at 2026-10-07 16:17:25.091
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'debug.xctest' passed at 2026-10-07 16:17:25.092
+	 Executed 25 tests, with 0 failures (0 unexpected) in 0.113 (0.113) seconds
+Test Suite 'All tests' passed at 2026-10-07 16:17:25.092
+	 Executed 25 tests, with 0 failures (0 unexpected) in 0.113 (0.113) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.

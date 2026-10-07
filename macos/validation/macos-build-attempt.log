@@ -1,0 +1,3 @@
+Host: Linux x86_64; Command: bash macos/scripts/build.sh arm64
+Exit: 2
+macOS SDK required. Run on a Mac or use .github/workflows/macos.yml.

@@ -1,0 +1,16 @@
+{
+  "src/DragonCodexBoot.cs": "7f847717c1689d6a757a57416348affbb241ef39d037a0fcaeb06888ffc885b9",
+  "src/app.manifest": "576a60af5f7df9e9fd98d9af3662aa3f1c2cef7763852dbdce5619a3e4f0b2c8",
+  "scripts/Import-Animation.ps1": "6cc3a9e4ce87d8a8f827849370d0484bfc9d03cf01ca2c1259a9790e895923c6",
+  "scripts/build.ps1": "843ee85d2daceb0cd9f79a9d786621c711413b7b0de795633966d06d398224a0",
+  "scripts/install-start-menu.ps1": "85f680c948488381f65f81f0ec33dafcec7bf65dc21176319e4865d3da6cd116",
+  "scripts/integrate-entrypoints.ps1": "6ce65cc6ab5e3ab3e306ac259d78b8a1b64a0ffb087be63c3090df3ecc88aa9c",
+  "scripts/package.ps1": "0ec85ac4d86ba89cf30a11db1394a3632e09f05b9325bb72b8c9413d64309a6c",
+  "scripts/test.ps1": "11f53c63c0710716853422d88ef61988ddc2433caef30afdb0ce572c8245d9b6",
+  "scripts/verify-repository.ps1": "57bd18cbbaa7d802e45a25879ba4ab72466fc46e699c0a5c79d5fc973eb4e06f",
+  "tests/EntrypointTests.ps1": "db7e0601c5cc46092c21b118f61bd4c350502b33b6f941798fab8321b3f2e9ce",
+  "tests/GeometryTests.cs": "b209238d95b281dce282f5a5a15a11bb1829884451eb269212d5ce14347f39e5",
+  "config/launcher.example.json": "85f389e1db0ebcc4f1cab1589b7e978ddb2faffe0bdfbc7fc61de02187fb0aa8",
+  "media/MEDIA_NOTICE.md": "e61aa3c6d5631bc89b42cd952e9cf0b33ca7f85f780274611b9c02b50a16cebc",
+  "media/startup.mp4": "a322c9947e6486c887cdc0ba913bbe57476b230abf45d85d95d86bce3898cfcd"
+}
