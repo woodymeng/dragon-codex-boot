@@ -8,8 +8,8 @@
 | macOS arm64 构建尝试 | exit 2：缺少 macOS SDK | `macos-build-attempt.log` |
 | Windows 源码/脚本/测试/配置与媒体逐文件对比 origin/main | 字节相同 | `windows-and-media-preservation.json` |
 | Bash 语法、配置 JSON、Info.plist、workflow YAML 解析 | 通过 | 本次执行工具输出；非 macOS 编译证据 |
-| GitHub REST / Actions | GH_TOKEN 无效，HTTP 401；无 Actions run ID | `github-access.log` |
-| GitHub push | 无可用 Git 凭据，推送失败 | `github-push.log` |
+| GitHub REST / Actions | GH_TOKEN 无效，HTTP 401；无 Actions run ID | `github-access.log`、`github-actions-attempt.log` |
+| GitHub push | 使用 gh 凭据助手真实推送，返回 Invalid username or token | `github-push.log` |
 
 Swift Linux 的日志中会出现 `Compiling DragonCodexBoot`。所有 AppKit/AVFoundation/ScreenCaptureKit 代码处于 `#if os(macOS)` 内，Linux 只编译了启动器的不支持平台入口，**不表示 macOS 原生部分已编译**。
 
