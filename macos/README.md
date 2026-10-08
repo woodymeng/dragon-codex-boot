@@ -2,9 +2,15 @@
 
 macOS 13+、Apple Silicon、Xcode Command Line Tools（Swift 5.9+）。使用 Swift、AppKit、AVFoundation、ScreenCaptureKit；窗口恢复、移动、缩放和置前使用公开 Accessibility API。Windows 实现在原目录保留。
 
-仅安装 Command Line Tools 时可能没有 XCTest。`test.sh` 会探测该模块，并使用 CLT 断言适配器编译、执行原有的全部核心测试方法；任一断言失败都会返回非零状态。完整 Xcode 和 Linux 仍使用 XCTest。CLT 路径不支持 SwiftPM 的测试筛选参数。
+仅安装 Command Line Tools 时可能没有 XCTest。`test.sh` 根据当前选中的 Xcode 工具链选择测试路径，并使用 CLT 断言适配器编译、执行原有的全部核心测试方法；任一断言失败都会返回非零状态。完整 Xcode 和 Linux 仍使用 XCTest。CLT 路径不支持 SwiftPM 的测试筛选参数。
 
 独立 `Dragon Codex Boot.app` 是启动入口，放到 `/Applications` 后可拖到 Dock。它不改写 Codex、系统快捷方式或原有 Dock 项。默认目标是 `com.openai.codex`、`/Applications/Codex.app`，本机需核对实际 bundle identifier。
+
+## 0.2.0 使用变化
+
+动画使用客户端所在屏幕的可用空间，屏幕背景在启动/恢复客户端之前遮住后方窗口，结束或跳过时一起撤去。视频保持比例，真实窗口过渡末端扩展至原生窗口比例。右上角始终显示“跳过 · Esc”，支持点击或 Escape。多屏跨屏窗口和全屏 Space 仍需单独验收。
+
+龙娘图标由内置 image_gen 根据用户提供的人物图左上角 GPT 龙娘生成（清冷表情版），源图与完整提示词为 `Resources/AppIcon.png`、`Resources/AppIcon.prompt.txt`；构建时生成 16–1024 像素的 ICNS。原角色与媒体权利仍遵循 `media/MEDIA_NOTICE.md`。
 
 ## 构建和测试
 
@@ -17,7 +23,7 @@ bash macos/scripts/package.sh
 open 'build/macos-arm64/Dragon Codex Boot.app'
 ```
 
-程序包：`dist/DragonCodexBoot-0.1.0-macos-arm64-with-video.zip` 与 SHA-256 文件。包含视频、配置模板、MIT 许可证和原媒体说明。使用临时签名（ad hoc），没有 Developer ID 签名或公证；自行编译可以正常运行，下载的包可能需要在“隐私与安全性”中选择“仍要打开”。发布给大众前需要自己的 Apple Developer 签名与公证。改变签名、路径或重新构建后，权限可能需要重新授予。
+程序包：`dist/DragonCodexBoot-0.2.0-macos-arm64-with-video.zip` 与 SHA-256 文件。包含视频、配置模板、MIT 许可证和原媒体说明。使用临时签名（ad hoc），没有 Developer ID 签名或公证；自行编译可以正常运行，下载的包可能需要在“隐私与安全性”中选择“仍要打开”。发布给大众前需要自己的 Apple Developer 签名与公证。改变签名、路径或重新构建后，权限可能需要重新授予。
 
 Linux 可以运行 `LauncherCore` 的 XCTest，不能编译或验证 AppKit、AVFoundation、ScreenCaptureKit 分支。仓库 workflow `.github/workflows/macos.yml` 使用 macOS runner，执行核心测试、原生 arm64 编译、AVFoundation 真正播放视频的 smoke test、签名检查与打包。若 runner 是 Intel，视频 smoke test 使用额外构建的 x86_64 包，日志清楚记录架构；arm64 包仍由 macOS SDK 编译。CI 不声称完成真实 Codex、TCC 权限或可见桌面的验收。
 
@@ -52,7 +58,7 @@ cp '/Applications/Dragon Codex Boot.app/Contents/Resources/launcher.example.json
 | `mediaLoadTimeout` | 视频准备上限，默认 12 秒 |
 | `captureStartTimeout` | 首个捕获帧上限，默认 3 秒；随后切换淡出 |
 | `stableWindowSeconds` | 同一可见窗口稳定时间，默认 0.6 秒 |
-| `playerWidth` / `playerHeight` | AppKit 点，默认 1280×720；按当前屏幕可用区域缩小 |
+| `playerWidth` / `playerHeight` | 兼容配置；仅作无窗口时捕获尺寸回退，动画使用屏幕可用空间 |
 | `matchClientToPlayer` | 用 AX 把真实窗口移到动画窗口的位置和尺寸，结束后保留该布局 |
 | `volume` | 0–1，默认 1 |
 

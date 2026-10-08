@@ -1,0 +1,11 @@
+/Library/Developer/CommandLineTools/usr/bin/swift
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+[0/1] Planning build
+Building for production...
+[0/2] Write swift-version--1AB21518FC5DEDBE.txt
+Build complete! (0.19s)
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app/Contents/Info.plist: OK
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: replacing existing signature
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: valid on disk
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: satisfies its Designated Requirement
+Built /Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app (ad hoc signed; not notarized)

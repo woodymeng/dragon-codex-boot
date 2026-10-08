@@ -1,5 +1,13 @@
 # macOS 移植本地交接
 
+## 0.2.0：遮挡、跳过按钮与清冷龙娘图标（2026-10-08）
+
+- 动画从固定 1280×720 改为客户端所在屏幕的可用区域，并在显示/恢复客户端之前铺设不透明屏幕背景。两者在结束、Esc、按钮跳过或超时后一起关闭。视频保持比例，捕获画面过渡末端扩展至客户端原生比例。
+- 右上角常驻“跳过 · Esc”按钮，可点击立即退出；原有本地和辅助功能授权下的全局 Esc 保留。新版按钮点击已实际产生 `handoff: skipped`。
+- 图标采用用户新提供的人物图左上角 GPT 龙娘：银白发、直立龙角、平静清冷表情、灰紫背景。已替换用户拒绝的成熟妩媚版本。`macos/Resources/AppIcon.png` 为最终原图，完整内置 image_gen 提示词在相邻 `AppIcon.prompt.txt`，构建自动生成 16–1024 像素 ICNS 并验证程序包。
+- 本地 26 项核心测试、arm64 编译、AVFoundation 实际播放、签名、ICNS 与 ZIP/SHA-256 校验通过，证据在 `macos/validation/v020-local/`。Windows、原视频、许可证未改动。
+- 程序包：`dist/DragonCodexBoot-0.2.0-macos-arm64-with-video.zip`；已在原路径更新 `build/macos-arm64/Dragon Codex Boot.app`。重新签名会使旧 TCC 授权失效，即使设置开关仍显示开启。最终版首次播放确认降级正常结束；正等待最终签名的辅助功能/录屏授权刷新后复核完整捕获。不得把 0.1.0 的人工验收写作新版验收。
+
 ## 最新实机结果：2026-10-08（上海时间）
 
 已恢复到本机 `DragonCodexBoot-Local/dragon-codex-boot` 的 `feat/macos-port` 分支；以下新结果优先于后文保留的云端历史。

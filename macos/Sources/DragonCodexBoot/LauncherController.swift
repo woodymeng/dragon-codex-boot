@@ -12,6 +12,7 @@ final class LauncherController: NSObject, NSApplicationDelegate {
     private let logger = EventLog()
     private var state: PlaybackState
     private var window: AnimationWindow?
+    private var backdrop: AnimationWindow?
     private var view: LauncherView?
     private var player: AVPlayer?
     private var timer: Timer?
@@ -79,25 +80,45 @@ final class LauncherController: NSObject, NSApplicationDelegate {
 
     private func showWindow() {
         let mouse = NSEvent.mouseLocation
-        let screen = NSScreen.screens.first { $0.frame.contains(mouse) } ?? NSScreen.main ?? NSScreen.screens[0]
-        let visible = screen.visibleFrame
-        let fitted = Geometry.aspectFit(sourceWidth: config.playerWidth, sourceHeight: config.playerHeight,
-            in: Rectangle(x: Double(visible.minX), y: Double(visible.minY),
-                          width: min(config.playerWidth, Double(visible.width)),
-                          height: min(config.playerHeight, Double(visible.height))))
-        let frame = CGRect(x: visible.midX - fitted.width / 2, y: visible.midY - fitted.height / 2,
-                           width: fitted.width, height: fitted.height)
+        // Cover the existing client's display before launching/restoring it. The
+        // old fixed-size window exposed larger clients until the late AX resize.
+        let existing = client.probe()
+        let clientRect = existing.map { target -> CGRect in
+            let primaryHeight = CGDisplayBounds(CGMainDisplayID()).height
+            return CGRect(x: target.bounds.minX, y: primaryHeight - target.bounds.maxY,
+                          width: target.bounds.width, height: target.bounds.height)
+        }
+        let clientScreen = clientRect.flatMap { rect in
+            NSScreen.screens.filter { $0.frame.intersects(rect) }.max {
+                let a = $0.frame.intersection(rect), b = $1.frame.intersection(rect)
+                return a.width * a.height < b.width * b.height
+            }
+        }
+        let screen = clientScreen ?? NSScreen.screens.first { $0.frame.contains(mouse) } ?? NSScreen.main ?? NSScreen.screens[0]
+        let frame = screen.visibleFrame
+        let curtain = AnimationWindow(contentRect: screen.frame, styleMask: [.borderless], backing: .buffered, defer: false)
+        curtain.title = "Dragon Codex Boot Background"
+        curtain.isReleasedWhenClosed = false
+        curtain.backgroundColor = NSColor(calibratedRed: 0.10, green: 0.08, blue: 0.16, alpha: 1)
+        curtain.isOpaque = true
+        curtain.level = .floating
+        curtain.collectionBehavior = [.moveToActiveSpace, .fullScreenAuxiliary]
+        curtain.onSkip = { [weak self] in self?.skip() }
+        curtain.orderFrontRegardless()
+        backdrop = curtain
         let host = AnimationWindow(contentRect: frame, styleMask: [.borderless], backing: .buffered, defer: false)
         host.title = "Dragon Codex Boot"
         host.isReleasedWhenClosed = false
         host.backgroundColor = .black
-        host.level = .floating
+        host.level = NSWindow.Level(rawValue: NSWindow.Level.floating.rawValue + 1)
         host.collectionBehavior = [.moveToActiveSpace, .fullScreenAuxiliary]
         let content = LauncherView(frame: CGRect(origin: .zero, size: frame.size))
+        content.onSkip = { [weak self] in self?.skip() }
         host.contentView = content
         host.onSkip = { [weak self] in self?.skip() }
         window = host; view = content
         host.makeKeyAndOrderFront(nil)
+        logger.write("display-covered; animation=\(Int(frame.width))x\(Int(frame.height)); backdrop=\(Int(screen.frame.width))x\(Int(screen.frame.height))")
         NSApp.activate(ignoringOtherApps: true)
         // Local monitor also handles Esc while a subview owns the first responder.
         escapeMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [weak self] event in
@@ -217,7 +238,10 @@ final class LauncherController: NSObject, NSApplicationDelegate {
         }
         if state.transitioning {
             let alpha = Geometry.ease((time - config.transitionStart) / (config.transitionEnd - config.transitionStart))
-            if captureFallback { window?.alphaValue = 1 - alpha }
+            if captureFallback {
+                window?.alphaValue = 1 - alpha
+                backdrop?.alphaValue = 1 - alpha
+            }
             else { view?.update(frame: Geometry.interpolate(config.screenFrames, at: time), opacity: alpha) }
         }
     }
@@ -294,9 +318,11 @@ final class LauncherController: NSObject, NSApplicationDelegate {
         NSAnimationContext.runAnimationGroup { context in
             context.duration = reason == .skipped ? 0.08 : 0.2
             window?.animator().alphaValue = 0
+            backdrop?.animator().alphaValue = 0
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) { [self] in
             window?.orderOut(nil); window?.close()
+            backdrop?.orderOut(nil); backdrop?.close(); backdrop = nil
             view?.capturedLayer.contents = nil
             view?.videoLayer.player = nil; player = nil
             client.handOff()

@@ -1,0 +1,10 @@
+ProductName:		macOS
+ProductVersion:		26.3.1
+ProductVersionExtra:	(a)
+BuildVersion:		25D771280a
+arm64
+/Library/Developer/CommandLineTools
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+Target: arm64-apple-macosx16.0
+Full Xcode is not selected; using the selected Command Line Tools SDK.

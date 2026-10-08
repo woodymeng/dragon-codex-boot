@@ -19,6 +19,9 @@ with zipfile.ZipFile(archive) as bundle:
     plist = plistlib.loads(bundle.read(prefix + "Info.plist"))
     assert plist["CFBundleIdentifier"] == "community.DragonCodexBoot"
     assert plist["LSMinimumSystemVersion"] == "13.0"
+    assert plist["CFBundleIconFile"] == "AppIcon"
+    icon = bundle.read(prefix + "Resources/AppIcon.icns")
+    assert icon[:4] == b"icns" and int.from_bytes(icon[4:8], "big") == len(icon), "invalid app icon"
     binary = bundle.read(prefix + "MacOS/DragonCodexBoot")
     assert binary[:4] == b"\xcf\xfa\xed\xfe", "expected 64-bit Mach-O"
     assert int.from_bytes(binary[4:8], "little") == 0x0100000C, "expected native arm64 CPU"

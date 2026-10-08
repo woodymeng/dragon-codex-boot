@@ -83,6 +83,22 @@ final class ConfigurationTests: XCTestCase {
 }
 
 final class GeometryTests: XCTestCase {
+    func testLetterboxedTransitionEndsAtNativeWindowBounds() {
+        let window = Rectangle(x: 0, y: 0, width: 1512, height: 900)
+        let video = Geometry.aspectFit(sourceWidth: 1920, sourceHeight: 1080, in: window)
+        let frame = Configuration().screenFrames[0]
+        XCTAssertEqual(Geometry.transitionDestination(frame, videoRect: video, windowRect: window, progress: 0),
+                       Geometry.destination(frame, videoRect: video))
+        XCTAssertEqual(Geometry.transitionDestination(frame, videoRect: video, windowRect: window, progress: 1), window)
+        for step in 0...100 {
+            let rect = Geometry.transitionDestination(frame, videoRect: video, windowRect: window, progress: Double(step) / 100)
+            XCTAssertGreaterThanOrEqual(rect.x, 0)
+            XCTAssertGreaterThanOrEqual(rect.y, 0)
+            XCTAssertLessThanOrEqual(rect.x + rect.width, window.width + 0.000001)
+            XCTAssertLessThanOrEqual(rect.y + rect.height, window.height + 0.000001)
+        }
+    }
+
     func testEaseEndpointsAndMidpoint() {
         XCTAssertEqual(Geometry.ease(-1), 0)
         XCTAssertEqual(Geometry.ease(0.5), 0.5)

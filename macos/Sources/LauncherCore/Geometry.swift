@@ -46,6 +46,16 @@ public enum Geometry {
                   width: frame.width * videoRect.width, height: frame.height * videoRect.height)
     }
 
+    // Expand the video inset to the native client aspect ratio at handoff.
+    public static func transitionDestination(_ frame: ScreenFrame, videoRect: Rectangle,
+                                             windowRect: Rectangle, progress: Double) -> Rectangle {
+        let start = destination(frame, videoRect: videoRect)
+        let t = min(1, max(0, progress))
+        func mix(_ a: Double, _ b: Double) -> Double { a + (b - a) * t }
+        return Rectangle(x: mix(start.x, windowRect.x), y: mix(start.y, windowRect.y),
+                         width: mix(start.width, windowRect.width), height: mix(start.height, windowRect.height))
+    }
+
     // AX/CG global coordinates originate at the primary display's top left.
     // Do not flip relative to the current display: that breaks secondary displays.
     public static func accessibilityRect(appKit rect: Rectangle, primaryDisplayHeight: Double) -> Rectangle {
