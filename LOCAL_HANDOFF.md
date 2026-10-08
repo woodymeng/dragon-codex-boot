@@ -14,6 +14,7 @@
 - 电脑操作工具拒绝直接控制 `com.openai.codex`（安全限制），因此未绕过限制执行输入或退出宿主。真实窗口视觉与交接后输入已由用户确认；退出宿主后的冷启动、多屏及全屏 Space 尚未验收，不包含在本次通过范围。
 - GitHub 在执行沙箱内读取钥匙串失败；使用正常本机钥匙串后认证有效，仓库 `permissions.push=true`。远端此前尚无 `feat/macos-port`，并非凭据仍无效。
 - 实现及实机证据提交 `e86bf7fa5745c9c7995f112e19e1b4e5d678b712` 已推送 `feat/macos-port`。[macOS CI 37728544408](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728544408) 和 [Windows CI 37728543063](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728543063) 均为 `success`；首轮远端实际运行的是 CLT 适配器；后续提交修正完整 Xcode 的测试分流，并补充验收记录。macOS CI 原始 artifact 保存在 `dist/actions-37728544408/`。
+- 最终测试脚本提交 `56393058f4759c2d33182164b2e07b07ce94cea1` 已推送。[macOS CI 37728765229](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728765229) 实际使用 **XCTest，25 tests / 0 failures**，编译、AVFoundation 播放、签名与打包通过；[Windows CI 37728765089](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728765089) 同样成功。最终日志位于 `dist/actions-37728765229/logs/`。其后的交付提交只更新本交接文件，应用与测试代码不变。
 
 应用：`build/macos-arm64/Dragon Codex Boot.app`。可分发包：`dist/DragonCodexBoot-0.1.0-macos-arm64-with-video.zip`。为保持 TCC 授权，本轮验收应用保留在构建位置；移动或重新签名后应再次检查权限。
 
