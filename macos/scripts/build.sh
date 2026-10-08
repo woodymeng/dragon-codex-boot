@@ -25,5 +25,5 @@ cp "$repo_root/LICENSE" "$repo_root/THIRD_PARTY_NOTICES.md" "$repo_root/macos/RE
 plutil -lint "$app/Contents/Info.plist"
 codesign --force --sign - --identifier community.DragonCodexBoot "$app"
 codesign --verify --deep --strict --verbose=2 "$app"
-lipo -verify_arch "$target_arch" "$app/Contents/MacOS/DragonCodexBoot"
+lipo "$app/Contents/MacOS/DragonCodexBoot" -verify_arch "$target_arch"
 echo "Built $app (ad hoc signed; not notarized)"

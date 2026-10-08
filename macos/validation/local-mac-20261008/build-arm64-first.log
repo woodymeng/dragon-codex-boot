@@ -1,0 +1,40 @@
+/Library/Developer/CommandLineTools/usr/bin/swift
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+Building for production...
+[0/5] Write sources
+[2/5] Write swift-version--1AB21518FC5DEDBE.txt
+[4/6] Compiling LauncherCore Configuration.swift
+[5/7] Compiling DragonCodexBoot Boot.swift
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/macos/Sources/DragonCodexBoot/LauncherController.swift:335:9: warning: result of 'try?' is unused
+333 |         guard let handle = try? FileHandle(forWritingTo: url) else { return }
+334 |         defer { try? handle.close() }
+335 |         try? handle.seekToEnd()
+    |         `- warning: result of 'try?' is unused
+336 |         let line = ISO8601DateFormatter().string(from: Date()) + " " + event.replacingOccurrences(of: "\n", with: " ") + "\n"
+337 |         try? handle.write(contentsOf: Data(line.utf8))
+[5/7] Write Objects.LinkFileList
+[6/7] Linking DragonCodexBoot
+Build complete! (35.67s)
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app/Contents/Info.plist: OK
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: replacing existing signature
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: valid on disk
+/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app: satisfies its Designated Requirement
+error: /Library/Developer/CommandLineTools/usr/bin/lipo: unknown architecture specification flag: /Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app/Contents/MacOS/DragonCodexBoot in specifying -verify_arch operation
+/Library/Developer/CommandLineTools/usr/bin/lipo: known architecture flags are: any little big ppc64 x86_64 x86_64h arm64 ppc970-64 arm64_32 arm64e ppc i386 m68k hppa sparc m88k i860 veo arm ppc601 ppc603 ppc603e ppc603ev ppc604 ppc604e ppc750 ppc7400 ppc7450 ppc970 i486 i486SX pentium i586 pentpro i686 pentIIm3 pentIIm5 pentium4 m68030 m68040 hppa7100LC veo1 veo2 veo3 veo4 armv4t armv5 xscale armv6 armv6m armv7 armv7f armv7s armv7k armv7m armv7em arm64v8
+usage: lipo <input_file> <command> [<options> ...]
+  command is one of:
+    -archs
+    -create
+    -detailed_info
+    -extract <arch_type> [-extract <arch_type> ...]
+    -extract_family <arch_type> [-extract_family <arch_type> ...]
+    -info
+    -remove <arch_type> [-remove <arch_type> ...]
+    -replace <arch_type> <file_name> [-replace <arch_type> <file_name> ...]
+    -thin <arch_type>
+    -verify_arch <arch_type> ...
+  options are one or more of:
+    -arch <arch_type> <input_file>
+    -hideARM64
+    -output <output_file>
+    -segalign <arch_type> <alignment>

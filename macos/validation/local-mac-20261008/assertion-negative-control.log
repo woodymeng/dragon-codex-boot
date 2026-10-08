@@ -1,0 +1,9 @@
+build/assertion-runner-check/main.swift:3: failure: 1 != 2
+build/assertion-runner-check/main.swift:4: failure: nan != 1.0 +/- 0.01
+build/assertion-runner-check/main.swift:5: failure: Expected true
+build/assertion-runner-check/main.swift:6: failure: Expected false
+build/assertion-runner-check/main.swift:7: failure: 0 < 1
+build/assertion-runner-check/main.swift:8: failure: 1 > 0
+build/assertion-runner-check/main.swift:9: failure: Expected a thrown error
+FAIL deliberate failures
+CLT core tests: 1 tests, 7 failures

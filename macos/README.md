@@ -2,6 +2,8 @@
 
 macOS 13+、Apple Silicon、Xcode Command Line Tools（Swift 5.9+）。使用 Swift、AppKit、AVFoundation、ScreenCaptureKit；窗口恢复、移动、缩放和置前使用公开 Accessibility API。Windows 实现在原目录保留。
 
+仅安装 Command Line Tools 时可能没有 XCTest。`test.sh` 会探测该模块，并使用 CLT 断言适配器编译、执行原有的全部核心测试方法；任一断言失败都会返回非零状态。完整 Xcode 和 Linux 仍使用 XCTest。CLT 路径不支持 SwiftPM 的测试筛选参数。
+
 独立 `Dragon Codex Boot.app` 是启动入口，放到 `/Applications` 后可拖到 Dock。它不改写 Codex、系统快捷方式或原有 Dock 项。默认目标是 `com.openai.codex`、`/Applications/Codex.app`，本机需核对实际 bundle identifier。
 
 ## 构建和测试

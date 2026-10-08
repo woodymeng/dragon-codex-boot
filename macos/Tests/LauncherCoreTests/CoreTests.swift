@@ -1,4 +1,8 @@
+#if DRAGON_CLT_TESTS
+import Foundation
+#else
 import XCTest
+#endif
 @testable import LauncherCore
 
 final class ConfigurationTests: XCTestCase {

@@ -1,5 +1,25 @@
 # macOS 移植本地交接
 
+## 最新实机结果：2026-10-08（上海时间）
+
+已恢复到本机 `DragonCodexBoot-Local/dragon-codex-boot` 的 `feat/macos-port` 分支；以下新结果优先于后文保留的云端历史。
+
+- 环境：真实 Apple Silicon arm64，macOS 26.3.1 (a)，Apple Swift 6.1，Command Line Tools SDK。
+- 修复实机发现的两处阻塞：CLT 缺少 XCTest；`lipo -verify_arch` 的文件参数顺序错误。CLT 现在运行原有全部 25 个测试方法，0 失败；完整 Xcode/Linux 仍走 XCTest。七种故意失败的断言返回 exit 1，验证适配器不会吞掉失败。
+- 原生 arm64 `.app` 编译、链接、ad hoc 签名、架构检查、ZIP 内容和 SHA-256 均通过。AVFoundation 真正播放到 0.11175 秒，视频长度 14.09967 秒。
+- 实际客户端为 `/Applications/ChatGPT.app`，标识 `com.openai.codex`。恢复脚本兼容该安装名称；运行时 LaunchServices 已正确发现现有客户端。
+- 用户已明确授权并完成系统认证；独立应用入口日志确认 `ax=true; screenCapture=true`。直接从 Codex 命令执行器运行二进制会采用不同的 TCC 归属，CLI 的 `ax=false` 不能替代应用入口的权限结论。
+- 独立应用接入现有 Codex 实测记录：`attached-existing-client` → `real-window-aligned` → `first-real-window-frame` → `handoff: ended` → `focus-requested-for-real-client`。这是运行证据，尚不自动等同于用户视觉/输入验收。
+- Esc 播放中退出、等待节点 Esc 退出均实际执行，日志为 `handoff: skipped`；等待节点的中文提示已可见。不存在客户端的临时配置在节点等待 3 秒后 `handoff: timeout` 并退出。无辅助功能权限时普通播放降级结束已实测。
+- 电脑操作工具拒绝直接控制 `com.openai.codex`（安全限制），因此不绕过工具限制执行输入或退出宿主。真实窗口视觉与交接后输入由用户确认；冷启动、多屏及全屏 Space 尚未验收。
+- GitHub 在执行沙箱内读取钥匙串失败；使用正常本机钥匙串后认证有效，仓库 `permissions.push=true`。远端此前尚无 `feat/macos-port`，并非凭据仍无效。
+
+应用：`build/macos-arm64/Dragon Codex Boot.app`。可分发包：`dist/DragonCodexBoot-0.1.0-macos-arm64-with-video.zip`。为保持 TCC 授权，本轮验收应用保留在构建位置；移动或重新签名后应再次检查权限。
+
+证据：`macos/validation/local-mac-20261008/`；完整本机构建日志另存于 `build/`。其中 `build-arm64-first.log` 是修复前的真实失败；`assertion-negative-control.log` 的七个失败是预期负对照。未保存或提交任何聊天截图。Windows 原实现、`LICENSE` 和原始媒体逐字节保持不变。
+
+后文是云端交接历史，不代表当前编译、凭据或实机状态。
+
 检查日期：2026-10-07 UTC。仓库：<https://github.com/woodymeng/dragon-codex-boot>。
 
 **当前状态：云端可执行的核心检查完成，源码已本地提交；GitHub 推送和 macOS Actions 被无效凭据阻止。尚无编译完成的 `.app`，尚未达到“远程成果已提交且 macOS 编译通过”的里程碑。** 用户已经授权推送和运行 Actions，仍需要实际有效的环境凭据，口头授权不能修复 401。

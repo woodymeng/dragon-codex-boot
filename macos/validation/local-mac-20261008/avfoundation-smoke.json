@@ -1,0 +1,7 @@
+{
+  "duration" : 14.099666666666666,
+  "playbackTime" : 0.111751959,
+  "scope" : "bundled AVFoundation media playback; no Codex, AX, or screen capture",
+  "smokeTest" : "passed",
+  "videoTracks" : 1
+}

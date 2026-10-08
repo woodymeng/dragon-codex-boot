@@ -1,0 +1,61 @@
+2026-10-08T04:32:28Z launcher-started; ax=false; screenCapture=true
+2026-10-08T04:32:28Z plain-fade-mode: Screen Recording or Accessibility permission absent
+2026-10-08T04:32:28Z attached-existing-client
+2026-10-08T04:32:28Z video-playing
+2026-10-08T04:32:39Z alignment-unavailable: Accessibility permission or matching window missing
+2026-10-08T04:32:42Z handoff: ended
+2026-10-08T04:32:43Z focus-requested-for-real-client
+2026-10-08T04:32:45Z launcher-started; ax=false; screenCapture=false
+2026-10-08T04:32:45Z plain-fade-mode: Screen Recording or Accessibility permission absent
+2026-10-08T04:32:45Z attached-existing-client
+2026-10-08T04:32:45Z video-playing
+2026-10-08T04:32:56Z alignment-unavailable: Accessibility permission or matching window missing
+2026-10-08T04:32:59Z handoff: ended
+2026-10-08T04:32:59Z focus-requested-for-real-client
+2026-10-08T04:33:17Z launcher-started; ax=false; screenCapture=true
+2026-10-08T04:33:17Z plain-fade-mode: Screen Recording or Accessibility permission absent
+2026-10-08T04:33:17Z client-not-found: configure bundleIdentifier and applicationPath
+2026-10-08T04:33:17Z video-playing
+2026-10-08T04:33:29Z waiting-at-configured-node
+2026-10-08T04:33:32Z handoff: timeout
+2026-10-08T04:33:32Z closed-without-client
+2026-10-08T04:35:17Z launcher-started; ax=false; screenCapture=true
+2026-10-08T04:35:17Z plain-fade-mode: Screen Recording or Accessibility permission absent
+2026-10-08T04:35:17Z attached-existing-client
+2026-10-08T04:35:18Z video-playing
+2026-10-08T04:35:28Z alignment-unavailable: Accessibility permission or matching window missing
+2026-10-08T04:35:32Z handoff: ended
+2026-10-08T04:35:32Z focus-requested-for-real-client
+2026-10-08T04:35:37Z launcher-started; ax=true; screenCapture=true
+2026-10-08T04:35:37Z attached-existing-client
+2026-10-08T04:35:37Z video-playing
+2026-10-08T04:35:48Z real-window-aligned
+2026-10-08T04:35:49Z first-real-window-frame
+2026-10-08T04:35:52Z handoff: ended
+2026-10-08T04:35:52Z focus-requested-for-real-client
+2026-10-08T04:35:55Z launcher-started; ax=true; screenCapture=true
+2026-10-08T04:35:55Z attached-existing-client
+2026-10-08T04:35:56Z video-playing
+2026-10-08T04:36:06Z handoff: skipped
+2026-10-08T04:36:06Z focus-requested-for-real-client
+2026-10-08T04:36:52Z launcher-started; ax=false; screenCapture=true
+2026-10-08T04:36:52Z plain-fade-mode: Screen Recording or Accessibility permission absent
+2026-10-08T04:36:52Z client-not-found: configure bundleIdentifier and applicationPath
+2026-10-08T04:36:52Z video-playing
+2026-10-08T04:37:04Z waiting-at-configured-node
+2026-10-08T04:37:20Z handoff: skipped
+2026-10-08T04:37:20Z closed-without-client
+2026-10-08T04:38:00Z launcher-started; ax=true; screenCapture=true
+2026-10-08T04:38:00Z attached-existing-client
+2026-10-08T04:38:00Z video-playing
+2026-10-08T04:38:11Z real-window-aligned
+2026-10-08T04:38:11Z first-real-window-frame
+2026-10-08T04:38:14Z handoff: ended
+2026-10-08T04:38:15Z focus-requested-for-real-client
+2026-10-08T04:38:17Z launcher-started; ax=true; screenCapture=true
+2026-10-08T04:38:17Z attached-existing-client
+2026-10-08T04:38:17Z video-playing
+2026-10-08T04:38:28Z real-window-aligned
+2026-10-08T04:38:28Z first-real-window-frame
+2026-10-08T04:38:32Z handoff: ended
+2026-10-08T04:38:32Z focus-requested-for-real-client

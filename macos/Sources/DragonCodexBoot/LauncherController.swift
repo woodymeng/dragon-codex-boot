@@ -332,7 +332,7 @@ final class EventLog {
         if !manager.fileExists(atPath: url.path) { manager.createFile(atPath: url.path, contents: nil) }
         guard let handle = try? FileHandle(forWritingTo: url) else { return }
         defer { try? handle.close() }
-        try? handle.seekToEnd()
+        _ = try? handle.seekToEnd()
         let line = ISO8601DateFormatter().string(from: Date()) + " " + event.replacingOccurrences(of: "\n", with: " ") + "\n"
         try? handle.write(contentsOf: Data(line.utf8))
     }

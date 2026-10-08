@@ -59,6 +59,10 @@ echo "Logs: $log_root and $repo_root/build/macos-ci-logs"
 
 # Configure a new profile with the installed app's real identity; preserve any existing profile.
 client_app='/Applications/Codex.app'
+if [[ ! -f "$client_app/Contents/Info.plist" && -f '/Applications/ChatGPT.app/Contents/Info.plist' ]] \
+    && [[ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' '/Applications/ChatGPT.app/Contents/Info.plist')" == com.openai.codex ]]; then
+    client_app='/Applications/ChatGPT.app'
+fi
 user_config="$HOME/Library/Application Support/DragonCodexBoot/launcher.json"
 if [[ ! -e "$user_config" && -f "$client_app/Contents/Info.plist" ]]; then
     client_id="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$client_app/Contents/Info.plist")"
