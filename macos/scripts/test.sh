@@ -2,7 +2,9 @@
 set -euo pipefail
 script_root="$(cd "$(dirname "$0")" && pwd)"
 repo_root="$(cd "$script_root/../.." && pwd)"
-if [[ "$(uname -s)" == Darwin ]] && ! printf 'import XCTest\n' | swiftc -typecheck - >/dev/null 2>&1; then
+# SwiftPM supplies XCTest's framework search paths under full Xcode; a bare
+# swiftc import probe incorrectly rejects XCTest even on those installations.
+if [[ "$(uname -s)" == Darwin ]] && ! xcodebuild -version >/dev/null 2>&1; then
     if [[ $# -gt 0 ]]; then echo 'SwiftPM test arguments require XCTest / full Xcode.' >&2; exit 2; fi
     exec bash "$script_root/test-clt.sh"
 fi

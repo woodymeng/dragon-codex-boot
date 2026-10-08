@@ -9,10 +9,11 @@
 - 原生 arm64 `.app` 编译、链接、ad hoc 签名、架构检查、ZIP 内容和 SHA-256 均通过。AVFoundation 真正播放到 0.11175 秒，视频长度 14.09967 秒。
 - 实际客户端为 `/Applications/ChatGPT.app`，标识 `com.openai.codex`。恢复脚本兼容该安装名称；运行时 LaunchServices 已正确发现现有客户端。
 - 用户已明确授权并完成系统认证；独立应用入口日志确认 `ax=true; screenCapture=true`。直接从 Codex 命令执行器运行二进制会采用不同的 TCC 归属，CLI 的 `ax=false` 不能替代应用入口的权限结论。
-- 独立应用接入现有 Codex 实测记录：`attached-existing-client` → `real-window-aligned` → `first-real-window-frame` → `handoff: ended` → `focus-requested-for-real-client`。这是运行证据，尚不自动等同于用户视觉/输入验收。
+- 独立应用接入现有 Codex 实测记录：`attached-existing-client` → `real-window-aligned` → `first-real-window-frame` → `handoff: ended` → `focus-requested-for-real-client`。12:40 的重播结束后，用户明确确认“真实窗口显示”和“结束后直接输入”两项都正常；已有客户端路径的真实窗口验收完成。
 - Esc 播放中退出、等待节点 Esc 退出均实际执行，日志为 `handoff: skipped`；等待节点的中文提示已可见。不存在客户端的临时配置在节点等待 3 秒后 `handoff: timeout` 并退出。无辅助功能权限时普通播放降级结束已实测。
-- 电脑操作工具拒绝直接控制 `com.openai.codex`（安全限制），因此不绕过工具限制执行输入或退出宿主。真实窗口视觉与交接后输入由用户确认；冷启动、多屏及全屏 Space 尚未验收。
+- 电脑操作工具拒绝直接控制 `com.openai.codex`（安全限制），因此未绕过限制执行输入或退出宿主。真实窗口视觉与交接后输入已由用户确认；退出宿主后的冷启动、多屏及全屏 Space 尚未验收，不包含在本次通过范围。
 - GitHub 在执行沙箱内读取钥匙串失败；使用正常本机钥匙串后认证有效，仓库 `permissions.push=true`。远端此前尚无 `feat/macos-port`，并非凭据仍无效。
+- 实现及实机证据提交 `e86bf7fa5745c9c7995f112e19e1b4e5d678b712` 已推送 `feat/macos-port`。[macOS CI 37728544408](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728544408) 和 [Windows CI 37728543063](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37728543063) 均为 `success`；首轮远端实际运行的是 CLT 适配器；后续提交修正完整 Xcode 的测试分流，并补充验收记录。macOS CI 原始 artifact 保存在 `dist/actions-37728544408/`。
 
 应用：`build/macos-arm64/Dragon Codex Boot.app`。可分发包：`dist/DragonCodexBoot-0.1.0-macos-arm64-with-video.zip`。为保持 TCC 授权，本轮验收应用保留在构建位置；移动或重新签名后应再次检查权限。
 
