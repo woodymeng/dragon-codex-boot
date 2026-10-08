@@ -4,6 +4,18 @@
 
 **当前状态：云端可执行的核心检查完成，源码已本地提交；GitHub 推送和 macOS Actions 被无效凭据阻止。尚无编译完成的 `.app`，尚未达到“远程成果已提交且 macOS 编译通过”的里程碑。** 用户已经授权推送和运行 Actions，仍需要实际有效的环境凭据，口头授权不能修复 401。
 
+## 2026-10-08 接回本地
+
+本轮重新检查仍为云端 Linux，没有连接的本地 Codex 会话，GitHub 授权仍返回 401。尚未迁移执行环境，也未在 Mac 运行任何检查。无需重新授权推送，但需要本地任务实际连接到 Mac。
+
+下载 `dist/DragonCodexBoot-LocalResume.zip` 到 Mac 并解压，双击 `Resume-On-Mac.command`；也可在终端运行 `bash /解压路径/DragonCodexBoot-Local/Resume-On-Mac.command`。若缺少 SDK，先执行 `xcode-select --install`；需支持 Swift 5.9+ 的当前工具链。
+
+入口校验 Git bundle 并恢复原提交到 `~/Developer/dragon-codex-boot-macos-提交前12位`，打印准确路径。它执行核心测试、arm64 构建、实际 AVFoundation 播放验证、签名和打包，保存日志；首次配置会读取已安装 Codex 的实际 bundle ID，现有用户配置保留。若本机 gh 有仓库写权限且源码干净，会尝试已授权的分支推送；成功验证后打开构建的 `.app`。它不把打开窗口当作实机验收通过。
+
+接着在 Mac 的 Codex 中以**本地执行环境**打开该仓库，把压缩包内 `LOCAL_SESSION_PROMPT.txt` 的内容交给本地任务。当前云端对话没有可直接切换 Mac 的工具；本地项目连接后才能继续读编译日志、修复 Apple SDK 错误并验证真实窗口。两项系统权限仍需在 Mac 设置中授予。
+
+恢复入口也已纳入源码：`macos/scripts/resume-local.command`。此次调整让自动检查支持仅安装 Command Line Tools 的 Mac，不要求完整 Xcode；本轮只验证了脚本语法、Linux 拒绝路径和离线恢复，不声称已在 Mac 运行。
+
 ## 分支、提交和交付物
 
 - 分支：`feat/macos-port`，从 `main` 创建。

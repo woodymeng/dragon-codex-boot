@@ -1,0 +1,12 @@
+2026-10-08: Bash syntax and embedded Python syntax passed.
+Command: bash macos/scripts/resume-local.command
+Host: Linux x86_64
+Exit: 2
+Run this entry on your local Mac. The current host is not macOS.
+
+Command: bash macos/scripts/ci.sh
+Host: Linux x86_64
+Exit: 2
+This verification entry requires a Mac and the macOS SDK.
+
+No execution on macOS; no SDK compilation or desktop acceptance.

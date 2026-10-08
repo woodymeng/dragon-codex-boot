@@ -2,9 +2,19 @@
 set -euo pipefail
 script_root="$(cd "$(dirname "$0")" && pwd)"
 repo_root="$(cd "$script_root/../.." && pwd)"
+if [[ "$(uname -s)" != Darwin ]]; then echo 'This verification entry requires a Mac and the macOS SDK.' >&2; exit 2; fi
 mkdir -p "$repo_root/build/macos-ci-logs"
 log_root="$repo_root/build/macos-ci-logs"
-{ sw_vers; uname -m; xcodebuild -version; swift --version; } | tee "$log_root/environment.log"
+{
+    sw_vers
+    uname -m
+    xcode-select -p
+    xcrun --show-sdk-path
+    xcrun swift --version
+    if ! xcodebuild -version 2>/dev/null; then
+        echo 'Full Xcode is not selected; using the selected Command Line Tools SDK.'
+    fi
+} | tee "$log_root/environment.log"
 bash "$script_root/test.sh" 2>&1 | tee "$log_root/tests.log"
 bash "$script_root/build.sh" arm64 2>&1 | tee "$log_root/build-arm64.log"
 # Execute playback on the actual runner CPU. Cross-compilation is recorded separately.
