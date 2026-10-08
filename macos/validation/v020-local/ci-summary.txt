@@ -1,0 +1,5 @@
+Source commit: d963b7f572821762ef8afc874280407ce854be28
+macOS CI: https://github.com/woodymeng/dragon-codex-boot/actions/runs/37747141145 success
+Windows CI: https://github.com/woodymeng/dragon-codex-boot/actions/runs/37747141168 success
+build-test-package	Compile, run tests and AVFoundation playback, package arm64 app	2026-10-08T08:02:34.1011060Z 	 Executed 26 tests, with 0 failures (0 unexpected) in 0.015 (0.016) seconds
+build-test-package	Compile, run tests and AVFoundation playback, package arm64 app	2026-10-08T08:02:34.1012200Z 	 Executed 26 tests, with 0 failures (0 unexpected) in 0.015 (0.018) seconds

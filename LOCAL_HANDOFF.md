@@ -6,7 +6,16 @@
 - 右上角常驻“跳过 · Esc”按钮，可点击立即退出；原有本地和辅助功能授权下的全局 Esc 保留。新版按钮点击已实际产生 `handoff: skipped`。
 - 图标采用用户新提供的人物图左上角 GPT 龙娘：银白发、直立龙角、平静清冷表情、灰紫背景。已替换用户拒绝的成熟妩媚版本。`macos/Resources/AppIcon.png` 为最终原图，完整内置 image_gen 提示词在相邻 `AppIcon.prompt.txt`，构建自动生成 16–1024 像素 ICNS 并验证程序包。
 - 本地 26 项核心测试、arm64 编译、AVFoundation 实际播放、签名、ICNS 与 ZIP/SHA-256 校验通过，证据在 `macos/validation/v020-local/`。Windows、原视频、许可证未改动。
-- 程序包：`dist/DragonCodexBoot-0.2.0-macos-arm64-with-video.zip`；已在原路径更新 `build/macos-arm64/Dragon Codex Boot.app`。重新签名会使旧 TCC 授权失效，即使设置开关仍显示开启。最终版首次播放确认降级正常结束；正等待最终签名的辅助功能/录屏授权刷新后复核完整捕获。不得把 0.1.0 的人工验收写作新版验收。
+- 程序包：`dist/DragonCodexBoot-0.2.0-macos-arm64-with-video.zip`；已在原路径更新 `build/macos-arm64/Dragon Codex Boot.app`。本次重新签名使旧 TCC 授权记录失效，即使开关仍显示开启；仅关闭再开启未修复。最终通过系统设置移除并重新添加同一路径的两项记录，恢复权限。未重编译或再次签名已验收应用。
+
+### 0.2.0 最终验收与交付（16:10）
+
+- 16:07 独立应用日志：`ax=true; screenCapture=true` → `first-real-window-frame` → `handoff: ended` → `focus-requested-for-real-client`。窗口精确匹配曾记录 `alignment-inexact`，但捕获和交接成功；用户随后明确确认“遮挡与过渡都正常”。这次确认只覆盖新版遮挡与过渡，0.1.0 的输入验收另行保留。
+- 16:08 最终版 Escape 实测约 1 秒退出，日志 `handoff: skipped`；右上角按钮此前已实测同一路径。Finder 简介已目视确认银白发清冷龙娘图标，版本 0.2.0。应用已刷新 LaunchServices 注册，签名内容未变。
+- 实现提交 `d963b7f572821762ef8afc874280407ce854be28` 已获用户明确授权并推送 `feat/macos-port`。[macOS CI 37747141145](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37747141145) 成功，实际 XCTest **26 tests / 0 failures**；[Windows CI 37747141168](https://github.com/woodymeng/dragon-codex-boot/actions/runs/37747141168) 成功。
+- 此前耗时主要发生在重新签名后的 TCC 旧记录与反复授权确认，并非编译卡死或动画死循环；权限记录重建后已解除。
+- 日常从本次已授权的 `build/macos-arm64/Dragon Codex Boot.app` 启动，可将该应用拖入 Dock。直接打开官方 App 或官方更新后自动重启不会触发独立启动器。两个 App 使用不同 bundle ID，不替换官方图标；启动器接入已运行的客户端，播放结束后退出，因此 Dock 出现官方运行图标属于正常行为。
+- 保留当前应用路径可避免再次变更授权归属。ZIP 是已验收构建的备份；无需为本次交付重新安装。冷启动、多屏和全屏 Space 未新增验收。
 
 ## 最新实机结果：2026-10-08（上海时间）
 

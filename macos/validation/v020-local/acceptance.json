@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "sourceCommit": "d963b7f572821762ef8afc874280407ce854be28",
+  "permissions": {
+    "accessibility": true,
+    "screenRecording": true,
+    "recovery": "Remove stale records and re-add exact same final app in System Settings"
+  },
+  "fullRun": "first-real-window-frame; handoff: ended",
+  "escape": "handoff: skipped",
+  "humanVisualAcceptance": "遮挡与过渡都正常",
+  "finderIcon": "new reserved silver-haired dragon girl observed in Finder Get Info",
+  "limits": [
+    "alignment-inexact logged; capture and user visual acceptance passed",
+    "No new cold-start, multi-display, full-screen Space or typing acceptance"
+  ],
+  "appPath": "/Users/woodymeng/Downloads/DragonCodexBoot-Local/dragon-codex-boot/build/macos-arm64/Dragon Codex Boot.app"
+}

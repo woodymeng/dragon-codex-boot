@@ -1,0 +1,14 @@
+2026-10-08T08:07:01Z launcher-started; ax=true; screenCapture=true
+2026-10-08T08:07:01Z display-covered; animation=1512x870; backdrop=1512x982
+2026-10-08T08:07:01Z attached-existing-client
+2026-10-08T08:07:01Z video-playing
+2026-10-08T08:07:12Z alignment-inexact: client constraints or AX denial
+2026-10-08T08:07:12Z first-real-window-frame
+2026-10-08T08:07:15Z handoff: ended
+2026-10-08T08:07:15Z focus-requested-for-real-client
+2026-10-08T08:08:27Z launcher-started; ax=true; screenCapture=true
+2026-10-08T08:08:27Z display-covered; animation=1512x870; backdrop=1512x982
+2026-10-08T08:08:27Z attached-existing-client
+2026-10-08T08:08:27Z video-playing
+2026-10-08T08:08:28Z handoff: skipped
+2026-10-08T08:08:28Z focus-requested-for-real-client
